@@ -14,7 +14,7 @@ import {
 import * as React from "react";
 
 export default function Register() {
-  const { onFinish, loading } = useRegister();
+  const { onFinish, loading, disabledDate } = useRegister();
 
   return (
     <main className="min-h-dvh w-full flex items-center justify-center py-8">
@@ -60,6 +60,7 @@ export default function Register() {
               }}
               placeholder="Select your birth date"
               className="w-full"
+              disabledDate={disabledDate}
             />
           </Form.Item>
           <Form.Item

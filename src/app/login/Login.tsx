@@ -1,9 +1,12 @@
 "use client";
 
+import { useLogin } from "@/hooks/Login.hook";
 import { Button, Card, Divider, Form, Input, Typography } from "antd";
 import * as React from "react";
 
 export default function Login() {
+  const { onFinish, loading } = useLogin();
+
   return (
     <main className="min-h-dvh w-full flex items-center justify-center">
       <Card className="w-full max-w-[350px] shadow-md">
@@ -17,7 +20,7 @@ export default function Login() {
           Welcome back! Please login to continue.
         </Typography.Paragraph>
         <Divider />
-        <Form layout="vertical" requiredMark={false}>
+        <Form layout="vertical" requiredMark={false} onFinish={onFinish}>
           <Form.Item
             label="Email"
             name={"email"}
@@ -38,7 +41,13 @@ export default function Login() {
           >
             <Input.Password placeholder="Enter your password" />
           </Form.Item>
-          <Button htmlType="submit" type="primary" block className="mt-4">
+          <Button
+            htmlType="submit"
+            type="primary"
+            block
+            className="mt-4"
+            disabled={loading}
+          >
             Login
           </Button>
         </Form>
