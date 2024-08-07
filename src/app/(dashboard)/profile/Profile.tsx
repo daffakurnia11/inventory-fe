@@ -69,10 +69,10 @@ export default function Profile() {
             requiredMark={false}
             onFinish={(values) =>
               updateProfile(values, {
-                onSuccess: () => {
+                onSuccess: (response: any) => {
                   setMessage({
                     type: "success",
-                    message: "Profile updated successfully.",
+                    message: response.data.message,
                   });
                   updateSession(values);
                 },
