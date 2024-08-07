@@ -1,7 +1,8 @@
+import * as React from "react";
 import { adminService } from "@/services/apis/admin";
 import { AdminUrl } from "@/services/urls/admin";
 import { messageContent } from "@/stores/atom";
-import { EditProfilePayload } from "@/types/profile";
+import { ChangePasswordPayload, EditProfilePayload } from "@/types/profile";
 import { RangePickerProps } from "antd/es/date-picker";
 import dayjs from "dayjs";
 import { useSetAtom } from "jotai";
@@ -35,3 +36,28 @@ export const useEditProfile = () => {
     setMessage,
   };
 };
+
+export const useChangePassword = () => {
+  const setMessage = useSetAtom(messageContent);
+  const [loading, setLoading] = React.useState(false);
+
+  const onFinish = (values: ChangePasswordPayload) => {
+    setLoading(true);
+    adminService.changePassword(values).then((response: any) => {
+      if (response.status === 200) {
+        setMessage({
+          type: "success",
+          message: response.data.message,
+        });
+      } else {
+        setMessage({
+          type: "error",
+          message: response.data.message,
+        });
+      }
+      setLoading(false);
+    })
+  }
+
+  return { onFinish, loading }
+}

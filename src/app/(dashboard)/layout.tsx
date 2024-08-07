@@ -44,7 +44,7 @@ export default function DashboardLayout({
     },
     {
       key: "2",
-      label: "Change Password",
+      label: <Link href={"/change-password"}>Change Password</Link>,
     },
     {
       type: "divider",

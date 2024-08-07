@@ -5,3 +5,9 @@ export interface EditProfilePayload {
   birthDate: string;
   gender: "Male" | "Female" | "Other";
 }
+
+export interface ChangePasswordPayload {
+  oldPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
