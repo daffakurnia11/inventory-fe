@@ -8,6 +8,8 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import * as React from "react";
 import useSWR from "swr";
+import ProductCard from "@/components/ProductCard";
+import { ProductData } from "@/types/product";
 
 export default function CategoryDetail() {
   const { id } = useParams();
@@ -16,61 +18,6 @@ export default function CategoryDetail() {
   );
 
   const category: any = data;
-
-  const dataSource: any = category
-    ? (category as any).data.data?.products?.map(
-        (product: any, index: number) => ({
-          ...product,
-          key: index + 1,
-        })
-      )
-    : [];
-
-  const columns = [
-    {
-      title: "No.",
-      dataIndex: "key",
-      key: "key",
-    },
-    {
-      title: "Name",
-      dataIndex: "product_name",
-      key: "product_name",
-    },
-    {
-      title: "Description",
-      dataIndex: "product_description",
-      key: "product_description",
-    },
-    {
-      title: "Stock",
-      dataIndex: "stock",
-      key: "stock",
-    },
-    {
-      title: "Action",
-      render: (record: any) => {
-        return (
-          <div className="flex items-center">
-            <Button type="text">
-              <Link href={`/categories/${record.id}`}>
-                <EyeOutlined
-                  style={{ fontSize: 20 }}
-                  className="!text-blue-500"
-                />
-              </Link>
-            </Button>
-            <Button type="text">
-              <DeleteOutlined
-                style={{ fontSize: 20 }}
-                className="!text-red-500"
-              />
-            </Button>
-          </div>
-        );
-      },
-    },
-  ];
 
   return (
     category && (
@@ -89,13 +36,13 @@ export default function CategoryDetail() {
           </Link>
         </div>
 
-        <Card>
-          <Table
-            dataSource={dataSource}
-            columns={columns}
-            loading={isLoading}
-          />
-        </Card>
+        <div className="grid grid-cols-4 gap-4">
+          {category?.data?.data?.products.map(
+            (product: ProductData, index: number) => (
+              <ProductCard key={index} {...product} />
+            )
+          )}
+        </div>
       </>
     )
   );
