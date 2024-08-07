@@ -35,7 +35,7 @@ export default function DashboardLayout({
     },
     {
       key: "/transactions",
-      label: "Transactions",
+      label: <Link href={"/transactions"}>Transactions</Link>,
     },
   ];
 

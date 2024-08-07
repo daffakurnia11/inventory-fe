@@ -9,6 +9,7 @@ export const PATH = {
   CHANGEPASS: "/change-password",
   CATEGORIES: "/categories",
   PRODUCTS: "/products",
+  TRANSACTIONS: "/transactions",
 };
 
 export const PUBLIC_PATH = [...Object.values(AUTH_PATH)];
