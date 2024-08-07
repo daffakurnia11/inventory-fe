@@ -1,7 +1,9 @@
 "use client";
 
 import { useLogin } from "@/hooks/Login.hook";
+import { AUTH_PATH } from "@/utils/path";
 import { Button, Card, Divider, Form, Input, Typography } from "antd";
+import Link from "next/link";
 import * as React from "react";
 
 export default function Login() {
@@ -53,7 +55,9 @@ export default function Login() {
       <Divider />
       <Typography.Paragraph className="text-center">
         Don&apos;t have an account?{" "}
-        <Typography.Link href="/register">Register</Typography.Link>
+        <Typography.Text className="text-blue-500">
+          <Link href={AUTH_PATH.REGISTER}>Register</Link>
+        </Typography.Text>
       </Typography.Paragraph>
     </Card>
   );

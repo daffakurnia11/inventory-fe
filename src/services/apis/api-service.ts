@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosError } from "axios";
-import { loginStorage, messageContent, setMessageContent } from "@/stores/atom";
+import { messageContent, setMessageContent } from "@/stores/atom";
+import { deleteSession, getSession } from "@/utils/session";
 
 class ApiService {
   /**
@@ -11,8 +12,9 @@ class ApiService {
    * @returns Login Data string
    */
   private loginData(): string {
-    const data = localStorage.getItem("user-login");
-    return data ?? "";
+    const session = getSession();
+
+    return session.token ?? "";
   }
 
   /**
@@ -36,9 +38,8 @@ class ApiService {
   private initializeRequestInterceptor(): void {
     this.axiosInstance.interceptors.request.use(
       (config) => {
-        const userDataString = this.loginData();
-        const userData = JSON.parse(userDataString);
-        config.headers["Authorization"] = userData.state.token;
+        const token = this.loginData();
+        config.headers["Authorization"] = token;
         return config;
       },
       (error) => {
@@ -85,18 +86,7 @@ class ApiService {
     delete axios.defaults.headers["Authorization"];
     delete axios.defaults.headers.common["Authorization"];
     if (error?.response?.status === 401) {
-      loginStorage.setState({
-        login: false,
-        userData: {
-          id: null,
-          first_name: null,
-          last_name: null,
-          email: null,
-          birth_date: null,
-          gender: null,
-        },
-        token: null,
-      });
+      deleteSession();
     }
     return this.notifHandling("warning", String(error?.response));
   }

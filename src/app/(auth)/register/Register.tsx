@@ -1,6 +1,7 @@
 "use client";
 
 import { useRegister } from "@/hooks/Register.hook";
+import { AUTH_PATH } from "@/utils/path";
 import {
   Button,
   Card,
@@ -11,6 +12,7 @@ import {
   Select,
   Typography,
 } from "antd";
+import Link from "next/link";
 import * as React from "react";
 
 export default function Register() {
@@ -123,7 +125,9 @@ export default function Register() {
       <Divider />
       <Typography.Paragraph className="text-center">
         Already have an account?{" "}
-        <Typography.Link href="/login">Login</Typography.Link>
+        <Typography.Text className="text-blue-500">
+          <Link href={AUTH_PATH.LOGIN}>Login</Link>
+        </Typography.Text>
       </Typography.Paragraph>
     </Card>
   );

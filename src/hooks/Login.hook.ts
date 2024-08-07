@@ -1,6 +1,7 @@
 import { LoginService } from "@/services/apis/auth";
-import { loginData, messageContent } from "@/stores/atom";
+import { messageContent } from "@/stores/atom";
 import { LoginPayload } from "@/types/auth";
+import { createSession } from "@/utils/session";
 import { useSetAtom } from "jotai";
 import { useRouter } from "next/navigation";
 import * as React from "react";
@@ -9,7 +10,6 @@ export const useLogin = () => {
   const router = useRouter();
   const [loading, setLoading] = React.useState(false);
   const setMessage = useSetAtom(messageContent);
-  const setUserData = useSetAtom(loginData);
   
   const onFinish = (values: LoginPayload) => {
     setLoading(true);
@@ -20,10 +20,9 @@ export const useLogin = () => {
           type: "success",
           message: "Welcome back!",
         });
-        setUserData({
+        createSession({
           token: response.data.data.token,
-          userData: response.data.data.user,
-          login: true,
+          user: response.data.data.user,
         })
       } else {
         setMessage({
