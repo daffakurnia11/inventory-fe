@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Button, Dropdown, Layout, Menu, MenuProps, Typography } from "antd";
 import { DownOutlined } from "@ant-design/icons";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { deleteSession, getSession } from "@/utils/session";
 import Link from "next/link";
 
@@ -12,6 +12,9 @@ export default function DashboardLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  console.log(pathname);
+
   const router = useRouter();
 
   const session = getSession();
@@ -20,19 +23,19 @@ export default function DashboardLayout({
 
   const menuItems = [
     {
-      key: "1",
-      label: "Dashboard",
+      key: "/",
+      label: <Link href={"/"}>Dashboard</Link>,
     },
     {
-      key: "2",
+      key: "/categories",
       label: "Categories",
     },
     {
-      key: "3",
+      key: "/products",
       label: "Products",
     },
     {
-      key: "4",
+      key: "/transactions",
       label: "Transactions",
     },
   ];
@@ -72,7 +75,7 @@ export default function DashboardLayout({
           <Menu
             theme="dark"
             mode="horizontal"
-            defaultSelectedKeys={["1"]}
+            selectedKeys={[`${pathname}`]}
             items={menuItems}
             className="flex-1"
           />
