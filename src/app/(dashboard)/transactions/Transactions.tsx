@@ -22,8 +22,6 @@ export default function Transactions() {
       )
     : [];
 
-  console.log(dataSource);
-
   const columns = [
     {
       title: "No.",
