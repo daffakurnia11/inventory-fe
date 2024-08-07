@@ -2,7 +2,7 @@
 
 import { categoryService } from "@/services/apis/category";
 import { CategoryDetailUrl } from "@/services/urls/category";
-import { Button, Card, Table, Typography } from "antd";
+import { Button, Card, Empty, Table, Typography } from "antd";
 import { DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -36,13 +36,19 @@ export default function CategoryDetail() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-4 gap-4">
-          {category?.data?.data?.products.map(
-            (product: ProductData, index: number) => (
-              <ProductCard key={index} {...product} />
-            )
-          )}
-        </div>
+        {category?.data?.data?.products ? (
+          <div className="grid grid-cols-4 gap-4">
+            {category?.data?.data?.products?.map(
+              (product: ProductData, index: number) => (
+                <ProductCard key={index} {...product} />
+              )
+            )}
+          </div>
+        ) : (
+          <div className="w-full flex justify-center py-16">
+            <Empty />
+          </div>
+        )}
       </>
     )
   );

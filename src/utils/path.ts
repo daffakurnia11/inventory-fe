@@ -8,6 +8,7 @@ export const PATH = {
   PROFILE: "/profile",
   CHANGEPASS: "/change-password",
   CATEGORIES: "/categories",
+  PRODUCTS: "/products",
 };
 
 export const PUBLIC_PATH = [...Object.values(AUTH_PATH)];

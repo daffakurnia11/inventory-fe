@@ -1,7 +1,7 @@
 export interface ProductPayload {
   product_name: string;
   product_description: string;
-  product_image: number;
+  product_image: string;
   stock: number;
   category_id: string;
 }
