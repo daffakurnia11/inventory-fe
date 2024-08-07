@@ -1,13 +1,9 @@
 "use client";
 
-import { categoryService } from "@/services/apis/category";
-import { CategoryUrl } from "@/services/urls/category";
 import { Button, Card, Table, Typography } from "antd";
-import { DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import * as React from "react";
 import useSWR from "swr";
-import useSWRMutation from "swr/mutation";
 import { TransactionUrl } from "@/services/urls/transaction";
 import { transactionService } from "@/services/apis/transaction";
 import dayjs from "dayjs";
