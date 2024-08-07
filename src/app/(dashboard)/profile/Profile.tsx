@@ -17,10 +17,7 @@ export default function Profile() {
   const { onFinish, loading, disabledDate } = useEditProfile();
 
   return (
-    <>
-      <Typography.Title level={1} className="!font-semibold !text-2xl">
-        My Profile
-      </Typography.Title>
+    <div className="w-full max-w-[600px] mx-auto">
       <Card>
         <Typography.Title level={1} className="!font-semibold !text-xl">
           Edit Profile
@@ -29,12 +26,7 @@ export default function Profile() {
           Please fill out the form below to edit your profile.
         </Typography.Paragraph>
         <Divider />
-        <Form
-          layout="vertical"
-          requiredMark={false}
-          onFinish={onFinish}
-          className="max-w-[600px]"
-        >
+        <Form layout="vertical" requiredMark={false} onFinish={onFinish}>
           <Form.Item
             label="First Name"
             name={"firstName"}
@@ -104,6 +96,6 @@ export default function Profile() {
           </Button>
         </Form>
       </Card>
-    </>
+    </div>
   );
 }
