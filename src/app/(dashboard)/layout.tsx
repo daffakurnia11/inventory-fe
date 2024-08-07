@@ -13,7 +13,6 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  console.log(pathname);
 
   const router = useRouter();
 
@@ -28,7 +27,7 @@ export default function DashboardLayout({
     },
     {
       key: "/categories",
-      label: "Categories",
+      label: <Link href={"/categories"}>Categories</Link>,
     },
     {
       key: "/products",
@@ -89,14 +88,6 @@ export default function DashboardLayout({
         <Layout.Content className="bg-slate-100 container mx-auto py-8 flex-1 h-full">
           {children}
         </Layout.Content>
-        <Layout.Footer className="text-center">
-          <Typography.Paragraph>
-            Dafkur ©{new Date().getFullYear()} Created by{" "}
-            <Typography.Link href="https://dafkur.com">
-              Daffa Kurnia Fatah
-            </Typography.Link>
-          </Typography.Paragraph>
-        </Layout.Footer>
       </Layout>
     )
   );

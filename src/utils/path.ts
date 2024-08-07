@@ -5,7 +5,9 @@ export const AUTH_PATH = {
 
 export const PATH = {
   ROOT: "/",
-  PROFILE: "/profile"
+  PROFILE: "/profile",
+  CHANGEPASS: "/change-password",
+  CATEGORIES: "/categories",
 };
 
 export const PUBLIC_PATH = [...Object.values(AUTH_PATH)];
