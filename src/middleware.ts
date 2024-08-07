@@ -4,7 +4,7 @@ import type { NextRequest } from "next/server";
 import { AUTH_PATH, PATH, PROTECTED_PATH, PUBLIC_PATH } from "./utils/path";
 
 export function middleware(request: NextRequest) {
-  const path = request.nextUrl.pathname;
+  const path = `/${request.nextUrl.pathname.split("/")[1]}`;
 
   const isProtectedRoute = PROTECTED_PATH.includes(path);
 
