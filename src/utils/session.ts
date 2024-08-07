@@ -1,6 +1,7 @@
 "use client";
 
 import { UserCookiesData } from "@/types/auth";
+import { EditProfilePayload } from "@/types/profile";
 import { setCookie, deleteCookie, getCookie } from "cookies-next";
 
 export function getSession() {
@@ -24,12 +25,22 @@ export async function createSession(user: UserCookiesData) {
   });
 }
 
-export async function updateSession() {
+export async function updateSession(updateUser: EditProfilePayload) {
   const cookie = getSession();
 
   if (!cookie) return null;
 
-  createSession(cookie);
+  createSession({
+    ...cookie,
+    user: {
+      ...cookie.user,
+      first_name: updateUser.firstName,
+      last_name: updateUser.lastName,
+      email: updateUser.email,
+      birth_date: updateUser.birthDate,
+      gender: updateUser.gender,
+    }
+  });
 }
 
 export function deleteSession() {

@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosError } from "axios";
 import { messageContent, setMessageContent } from "@/stores/atom";
 import { deleteSession, getSession } from "@/utils/session";
 
-class ApiService {
+export class ApiService {
   /**
    * Create Axios Instance.
    */
