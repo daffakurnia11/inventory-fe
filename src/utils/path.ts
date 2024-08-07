@@ -5,8 +5,9 @@ export const AUTH_PATH = {
 
 export const PATH = {
   ROOT: "/",
+  PROFILE: "/profile"
 };
 
-export const PUBLIC_PATH = [AUTH_PATH.LOGIN, AUTH_PATH.REGISTER];
+export const PUBLIC_PATH = [...Object.values(AUTH_PATH)];
 
-export const PROTECTED_PATH = [PATH.ROOT];
+export const PROTECTED_PATH = [...Object.values(PATH)];

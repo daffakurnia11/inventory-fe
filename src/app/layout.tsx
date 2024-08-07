@@ -9,7 +9,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="min-h-dvh bg-slate-100">
         <AntdRegistry>{children}</AntdRegistry>
         <Message />
       </body>
